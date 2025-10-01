@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRINCE FAMQ - Главная</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="site-brand">PRINCE FAMQ</a>
+                
+                <nav>
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link active">Главная</a></li>
+                        <li><a href="about.html" class="nav-link">О нас</a></li>
+                        <li><a href="posts.html" class="nav-link">Посты</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-info" id="userInfo">
+                    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+                    <a href="#" class="btn btn-primary" id="loginBtn" onclick="showAuth()">Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Форма авторизации -->
+            <div class="auth-section" id="authSection" style="display: none;">
+                <div class="auth-form">
+                    <div class="auth-tabs">
+                        <button class="auth-tab active" onclick="showTab('login')">Вход</button>
+                        <button class="auth-tab" onclick="showTab('register')">Регистрация</button>
+                    </div>
+                    
+                    <div id="loginTab">
+                        <form id="loginForm" onsubmit="handleLogin(event)">
+                            <div class="form-group">
+                                <label class="form-label">Логин:</label>
+                                <input type="text" class="form-input" id="loginUsername" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Пароль:</label>
+                                <input type="password" class="form-input" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Войти</button>
+                        </form>
+                    </div>
+                    
+                    <div id="registerTab" style="display: none;">
+                        <form id="registerForm" onsubmit="handleRegister(event)">
+                            <div class="form-group">
+                                <label class="form-label">Логин:</label>
+                                <input type="text" class="form-input" id="regUsername" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email:</label>
+                                <input type="email" class="form-input" id="regEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Пароль:</label>
+                                <input type="password" class="form-input" id="regPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Зарегистрироваться</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Основной контент -->
+            <div id="mainContent">
+                <!-- Герой секция -->
+                <section class="hero-section">
+                    <div class="hero-content">
+                        <h1 class="hero-title">PRINCE FAMQ</h1>
+                        <p class="hero-subtitle">Лучшая семья на сервере Phoenix</p>
+                        <p class="hero-description">Присоединяйтесь к нашему дружному сообществу и станьте частью самой перспективной семьи!</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary btn-large" onclick="showAuth()">Присоединиться</button>
+                            <a href="about.html" class="btn btn-secondary btn-large">Узнать больше</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Статистика -->
+                <section class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Участников</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Активность</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Ивентов</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Топ-3</div>
+                            <div class="stat-label">Рейтинг</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Блок постов -->
+                <section class="posts-preview">
+                    <div class="section-header">
+                        <h2>Последние посты</h2>
+                        <a href="posts.html" class="btn btn-secondary">Все посты</a>
+                    </div>
+                    <div id="postsList" class="posts-grid">
+                        <!-- Посты будут загружаться здесь -->
+                    </div>
+                </section>
+
+                <!-- Личный кабинет пользователя -->
+                <div id="userContent" style="display: none;">
+                    <div class="card user-card">
+                        <h2>👤 Личный кабинет</h2>
+                        <div class="user-info-content">
+                            <p><strong>Имя:</strong> <span id="userName"></span></p>
+                            <p><strong>Роль:</strong> <span id="userRole"></span></p>
+                            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+                            <p><strong>Дата регистрации:</strong> <span id="userRegDate"></span></p>
+                        </div>
+                        <button class="btn btn-secondary" onclick="logout()">Выйти</button>
+                    </div>
+                </div>
+
+                <!-- Панель администратора -->
+                <div id="adminPanel" style="display: none;">
+                    <div class="admin-panel">
+                        <h2>📋 Панель администратора</h2>
+                        
+                        <div class="admin-tabs">
+                            <button class="admin-tab active" onclick="showAdminTab('posts')">📝 Управление постами</button>
+                            <button class="admin-tab" onclick="showAdminTab('users')">👥 Пользователи</button>
+                            <button class="admin-tab" onclick="showAdminTab('stats')">📊 Статистика</button>
+                        </div>
+                        
+                        <!-- Управление постами -->
+                        <div class="admin-section active" id="postsTab">
+                            <div class="card">
+                                <h3>Добавить новый пост</h3>
+                                <form onsubmit="addPost(event)" class="post-form">
+                                    <div class="form-group">
+                                        <label class="form-label">Заголовок поста:</label>
+                                        <input type="text" class="form-input" id="postTitle" placeholder="Введите заголовок" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Категория:</label>
+                                        <select class="form-input" id="postCategory">
+                                            <option value="news">📰 Новости</option>
+                                            <option value="events">🎉 Ивенты</option>
+                                            <option value="updates">🔄 Обновления</option>
+                                            <option value="guides">📚 Гайды</option>
+                                            <option value="announcements">📢 Объявления</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Текст поста:</label>
+                                        <textarea class="form-input" id="postContent" placeholder="Введите текст поста..." rows="6" required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Изображение (URL):</label>
+                                        <input type="url" class="form-input" id="postImage" placeholder="https://example.com/image.jpg">
+                                        <small class="form-help">Необязательное поле</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">📝 Опубликовать пост</button>
+                                </form>
+                            </div>
+
+                            <div class="card">
+                                <h3>Мои посты</h3>
+                                <div id="adminPostsList" class="posts-list">
+                                    <!-- Посты администратора -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Управление пользователями -->
+                        <div class="admin-section" id="usersTab">
+                            <div class="card">
+                                <h3>👥 Управление пользователями</h3>
+                                <div class="user-list" id="userList">
+                                    <!-- Список пользователей -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Статистика -->
+                        <div class="admin-section" id="statsTab">
+                            <div class="card">
+                                <h3>📊 Статистика сайта</h3>
+                                <div class="stats-grid">
+                                    <div class="stat-card">
+                                        <div class="stat-number" id="totalUsers">0</div>
+                                        <div class="stat-label">Пользователей</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number" id="totalPosts">0</div>
+                                        <div class="stat-label">Постов</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number" id="totalAdmins">0</div>
+                                        <div class="stat-label">Администраторов</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number" id="totalLikes">0</div>
+                                        <div class="stat-label">Лайков</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PRINCE FAMQ</h3>
+                    <p>Лучшая семья на сервере Phoenix</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="posts.html">Посты</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: baksarovbogdan@yandex.ru</p>
+                    <p>Телефон: +7 (923) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PRINCE FAMQ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+</html>

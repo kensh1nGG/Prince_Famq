@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обратная связь - PRINCE FAMQ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="site-header__brand">PRINCE FAMQ</a>
+            <nav class="site-nav">
+                <ul class="site-nav__list">
+                    <li class="site-nav__item">
+                        <a href="index.html" class="site-nav__link">Главная</a>
+                    </li>
+                    <li class="site-nav__item">
+                        <a href="about.html" class="site-nav__link">О нас</a>
+                    </li>
+                    <li class="site-nav__item">
+                        <a href="contacts.html" class="site-nav__link">Контакты</a>
+                    </li>
+                    <li class="site-nav__item">
+                        <a href="modal-form.html" class="site-nav__link site-nav__link--active site-nav__link--cta">Обратная связь</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> → <span>Обратная связь</span>
+            </div>
+
+            <section class="form-section">
+                <h1 class="main-heading">Обратная связь</h1>
+                
+                <div class="product-card">
+                    <p class="text-paragraph">Хотите присоединиться к нашей семье или есть вопросы? Заполните форму обратной связи, и мы свяжемся с вами в ближайшее время!</p>
+                    
+                    <button class="button button--primary" id="openModal">Написать нам</button>
+                </div>
+
+                <h2 class="sub-heading">Частые вопросы</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <h3 class="product-card__title">Как вступить в семью?</h3>
+                        <p class="text-paragraph">Заполните форму обратной связи, и мы свяжемся с вами для собеседования.</p>
+                    </div>
+                    <div class="product-card highlight">
+                        <h3 class="product-card__title">Есть ли требования?</h3>
+                        <p class="text-paragraph">Минимальный возраст - 16 лет, знание основ RolePlay и активность.</p>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-card__title">Какие преимущества?</h3>
+                        <p class="text-paragraph">Обучение, защита, участие в ивентах и дружное сообщество.</p>
+                    </div>
+                </div>
+
+                <dialog id="contactDialog" class="modal">
+                    <div class="modal__content product-card">
+                        <h2 class="modal__title sub-heading">Обратная связь</h2>
+                        
+                        <form class="form" id="contactForm" novalidate>
+                            <div class="form__group">
+                                <label for="name" class="form__label">Имя</label>
+                                <input type="text" id="name" name="name" class="form__input" required minlength="2">
+                                <div class="form__error" id="nameError"></div>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="email" class="form__label">Email</label>
+                                <input type="email" id="email" name="email" class="form__input" required>
+                                <div class="form__error" id="emailError"></div>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="phone" class="form__label">Телефон</label>
+                                <input type="tel" id="phone" name="phone" class="form__input" 
+                                       inputmode="tel"
+                                       pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$"
+                                       placeholder="+7 (999) 123-45-67"
+                                       aria-describedby="phoneHelp">
+                                <small id="phoneHelp" class="form__help">Формат: +7 (999) 123-45-67</small>
+                                <div class="form__error" id="phoneError"></div>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="role" class="form__label">Интересующая роль</label>
+                                <select id="role" name="role" class="form__input">
+                                    <option value="">Выберите роль</option>
+                                    <option value="capt">Capt</option>
+                                    <option value="rpcont">RP-content</option>
+                                    <option value="mcl">MCL</option>
+                                </select>
+                            </div>
+
+                            <div class="form__group">
+                                <label for="message" class="form__label">Сообщение</label>
+                                <textarea id="message" name="message" class="form__textarea" rows="5" 
+                                          placeholder="Расскажите о себе и почему хотите присоединиться..." 
+                                          required minlength="10"></textarea>
+                                <div class="form__error" id="messageError"></div>
+                            </div>
+
+                            <div class="form__actions">
+                                <button type="button" class="button button--secondary" id="closeModal">Отмена</button>
+                                <button type="submit" class="button button--primary">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </dialog>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p class="text-paragraph">&copy; 2025 PRINCE FAMQ. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

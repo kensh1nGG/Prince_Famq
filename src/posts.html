@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посты - PRINCE FAMQ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="site-brand">PRINCE FAMQ</a>
+                <nav>
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Главная</a></li>
+                        <li><a href="about.html" class="nav-link">О нас</a></li>
+                        <li><a href="posts.html" class="nav-link active">Посты</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="user-info" id="userInfo">
+                    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+                    <a href="index.html" class="btn btn-primary" id="loginBtn">Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="hero-section" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                <div class="hero-content">
+                    <h1 class="hero-title">Все посты</h1>
+                    <p class="hero-subtitle">Новости, ивенты, обновления и гайды нашего сообщества</p>
+                </div>
+            </div>
+
+            <div class="posts-section">
+                <div class="section-header">
+                    <h2>Все публикации</h2>
+                    <div id="postCount" class="post-count">Загрузка...</div>
+                </div>
+                <div id="postsList" class="posts-grid">
+                    <!-- Посты будут загружаться здесь -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PRINCE FAMQ</h3>
+                    <p>Лучшая семья на сервере Phoenix</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="posts.html">Посты</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: baksarovbogdan@yandex.ru</p>
+                    <p>Телефон: +7 (923) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PRINCE FAMQ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        // Загрузка всех постов на странице posts.html
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+            
+            // Ждем инициализации auth
+            setTimeout(() => {
+                if (typeof auth !== 'undefined' && auth) {
+                    auth.displayAllPosts();
+                    
+                    // Обновляем счетчик постов
+                    const postCount = document.getElementById('postCount');
+                    if (postCount) {
+                        postCount.textContent = `${auth.posts.length} публикаций`;
+                    }
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

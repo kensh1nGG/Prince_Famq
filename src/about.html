@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - PRINCE FAMQ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="site-brand">PRINCE FAMQ</a>
+                <nav>
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Главная</a></li>
+                        <li><a href="about.html" class="nav-link active">О нас</a></li>
+                        <li><a href="posts.html" class="nav-link">Посты</a></li>
+                        <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="user-info" id="userInfo">
+                    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+                    <a href="index.html" class="btn btn-primary">Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="hero-section" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <div class="hero-content">
+                    <h1 class="hero-title">О нашей семье</h1>
+                    <p class="hero-subtitle">PRINCE FAMQ - больше чем просто семья</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Наша миссия</h2>
+                <p>Мы создаем лучшее сообщество на 15 сервере Phoenix, где каждый участник может найти друзей, развивать свои навыки и получать незабываемые впечатления от игры.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2025</div>
+                    <div class="stat-label">Год основания</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Активных участников</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Проведенных ивентов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Топ-3</div>
+                    <div class="stat-label">В рейтинге сервера</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌟 Наши ценности</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <h3>🤝 Дружба</h3>
+                        <p>Мы верим в силу дружбы и взаимопомощи. Наше сообщество строится на доверии и поддержке.</p>
+                    </div>
+                    <div class="value-item">
+                        <h3>🎮 Качество</h3>
+                        <p>Стремимся к созданию качественного контента и запоминающегося игрового опыта для всех участников.</p>
+                    </div>
+                    <div class="value-item">
+                        <h3>🚀 Развитие</h3>
+                        <p>Постоянно развиваемся и улучшаем наши сервисы, чтобы предоставлять лучшие условия для игры.</p>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .values-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 1.5rem;
+                    margin-top: 1.5rem;
+                }
+                .value-item {
+                    background: var(--bg-tertiary);
+                    padding: 1.5rem;
+                    border-radius: var(--radius);
+                    border-left: 4px solid var(--primary-color);
+                }
+                .value-item h3 {
+                    margin-bottom: 0.5rem;
+                    color: var(--text-color);
+                }
+            </style>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PRINCE FAMQ</h3>
+                    <p>Лучшая семья на сервере Phoenix RP</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="posts.html">Посты</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>Email: baksarovbogdan@yandex.ru</p>
+                    <p>Телефон: +7 (923) 123-45-67</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PRINCE FAMQ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        // Загрузка темы при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        });
+    </script>
+</body>
+</html>
